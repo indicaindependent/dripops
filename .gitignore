@@ -1,0 +1,36 @@
+# Secrets — NEVER commit
+.secrets/
+*.env
+*.env.*
+!*.env.example
+.ingest_key*
+SETUP_LOG.md
+
+# Build / dependency artifacts
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backup files from in-place patches
+*.bak
+*.bak.*
+
+# Devpost intermediate / raw AI images
+assets/devpost/*_raw.png
+
+# Logs
+*.log
+agent/claude-agent/*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

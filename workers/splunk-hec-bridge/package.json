@@ -1,0 +1,19 @@
+{
+  "name": "dripops-splunk-hec-bridge",
+  "version": "0.1.0",
+  "description": "DripOps Splunk HEC ingest bridge — accepts events from ContentOps pipelines and forwards to Splunk Cloud HEC.",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260501.0",
+    "typescript": "^5.6.0",
+    "wrangler": "^4.0.0"
+  },
+  "dependencies": {
+    "esbuild": "^0.28.0"
+  }
+}

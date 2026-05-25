@@ -1,0 +1,38 @@
+# DripOps Splunk HEC Bridge — wrangler config
+# Built for Splunk Agentic Ops Hackathon 2026
+
+name = "dripops-splunk-hec-bridge"
+main = "src/index.ts"
+compatibility_date = "2026-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Custom domain — wired post-DNS reservation
+# routes = [
+#   { pattern = "hec.dripops.osintnet.uk", custom_domain = true }
+# ]
+
+# KV — failure buffer + metrics
+# Created via CF API on May 24, 2026
+[[kv_namespaces]]
+binding = "DRIPOPS_BUFFER"
+id = "858e4719de3948508db51bf0b088dbd4"
+
+[[kv_namespaces]]
+binding = "DRIPOPS_METRICS"
+id = "839ab3bbe09c410f9bde59c96047b14b"
+
+# Secrets — set via:
+#   wrangler secret put DRIPOPS_INGEST_KEY     (random 32-byte hex, sources auth with this)
+#   wrangler secret put SPLUNK_HEC_TOKEN       (UUID from Splunk HEC setup)
+#   wrangler secret put SPLUNK_HEC_URL         (https://http-inputs-prd-p-XXXXX.splunkcloud.com/services/collector/event)
+#   wrangler secret put SCRAMBLEMEBOT_TOKEN    (inherited from Pete's secret store)
+#   wrangler secret put TG_CHAT_ID             (0000000000)
+
+# Cron — replay buffered events every 5 minutes
+[triggers]
+crons = ["*/5 * * * *"]
+
+# Observability — full sampling for hackathon demos
+[observability]
+enabled = true
+head_sampling_rate = 1.0
